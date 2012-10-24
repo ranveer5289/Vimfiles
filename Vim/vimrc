@@ -72,12 +72,12 @@ endfunction
 
 
 "Prevent behaviour of <CR>
-autocmd!BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+autocmd! BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
-autocmd!BufEnter * call SplitColors()
+autocmd! BufEnter * call SplitColors()
 
 "Call ChangeColors()
-autocmd!TabEnter * call ChangeColors()
+autocmd! TabEnter * call ChangeColors()
 
 "Skeleton according to file-types
 autocmd! BufNewFile *.sh silent! 0r /home/ranveer/.vim/skel/bashscript.%:e
@@ -102,19 +102,19 @@ autocmd! BufRead,BufNewFile *.vala,*.vapi setfiletype vala
 "autocmd! FileType perl nnoremap <A-F5> :%! perltidy<cr>
 
 let vala_comment_strings = 1
-let g:gundo_auto_preview=0
-let g:SuperTabDefaultCompletionType = "context" "vim builtin/jed-vim autocomplete
+let g:SuperTabDefaultCompletionType = "context" "vim builtin/jed-vim autocomplete using supertab.
+let g:is_bash = 1
 
 "-----------------------------------JEDI-VIM SETTINGS-----------------------------------------------
 
 "let g:jedi#auto_initialization = 0
 let g:jedi#popup_on_dot = 0
 
-"---------------------------------------------------------------------------------------------------
 
 "-----------------------------------PATHOGEN PLUGIN MANAGER-----------------------------------------
 
 call pathogen#infect()
+call pathogen#infect('/home/ranveer/.vim/bundle')
 call pathogen#helptags()
 
 "---------------------------------------------------------------------------------------------------
@@ -153,7 +153,9 @@ set laststatus=2
 set modifiable
 set completeopt-=preview "Remove Pydoc Preview
 set completeopt=menuone,longest "Doesn't autocomplete with the first word
-
+set complete-=i "Searching include can be slow. Specially with my perl setup.
+set wildmenu  "Vim command-line completion
+set wildmode=longest:full,full
 
 "---------------VIM STATUSLINE----------------------------------------------------------------------
 
@@ -191,7 +193,7 @@ nnoremap <tab><tab> <C-w>w
 "highlighted word.
 nnoremap <silent> ,/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
-"Tenplate to replace highlighted text.
+"Template to replace highlighted text.
 cnoremap re %s//
 
 "Convert word to uppercase in insert mode.
@@ -215,15 +217,8 @@ cnoremap Q q
 "Fix Typo while using :w
 cnoremap W w
 
-"Gundo mapping
-"nnoremap <F5> :GundoToggle<cr>
-
 "check battery_status
 nnoremap <F3> :call BatteryStatus()<cr>
 
-"wrap word around in single quote
-nnoremap <Leader>q' gewi'<Esc>ea'<Esc>
-
-"wrap word around in double quote
-nnoremap <Leader>q" gewi"<Esc>ea"<Esc>
-
+"Edit file which requires sudo access"
+cnoremap ws w !sudo tee %
