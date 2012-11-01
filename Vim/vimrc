@@ -104,6 +104,9 @@ autocmd! BufRead,BufNewFile *.vala,*.vapi setfiletype vala
 let vala_comment_strings = 1
 let g:SuperTabDefaultCompletionType = "context" "vim builtin/jed-vim autocomplete using supertab.
 let g:is_bash = 1
+
+"-----------------------------------ULTISNIPS SETTINGS---------------------------------------------
+
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
