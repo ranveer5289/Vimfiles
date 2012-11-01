@@ -90,6 +90,12 @@ for (my $${1:var} = 0; $$1 < ${2:expression}; $$1++) {
 
 endsnippet
 
+snippet sfor "for"
+for (@${1:array}){
+    ${3:# body...}
+
+endsnippet
+
 snippet fore "foreach"
 foreach ${1:my $${2:x}} (@${3:array}) {
 	${4:# body...}
